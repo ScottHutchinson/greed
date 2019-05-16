@@ -30,7 +30,7 @@ let score dice =
         match windowStart with
         | Some 0 -> [sortedDice.[3]; sortedDice.[4]]
         | Some 1 -> [sortedDice.[0]; sortedDice.[4]]
-        | Some 2 -> [sortedDice.[0]; sortedDice.[2]]
+        | Some 2 -> [sortedDice.[0]; sortedDice.[1]]
         | _ -> sortedDice
 
     let singlesList = singles windowStart

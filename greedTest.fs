@@ -5,7 +5,7 @@ open Xunit
 open Greed
 
 [<Fact>]
-let ``Gets score for triple aces`` () =
+let ``Gets score for triple aces (at the beginning)`` () =
     let digits = [1;1;1;5;1]
     score digits |> should equal 1150
 
@@ -28,3 +28,13 @@ let ``Gets score for no triples and multiple singles`` () =
 let ``Gets score for multiple triples`` () =
     let digits = [5;5;5;5;5]
     score digits |> should equal 600
+
+[<Fact>]
+let ``Gets score for triple in the middle`` () =
+    let digits = [2;2;2;1;4]
+    score digits |> should equal 300
+
+[<Fact>]
+let ``Gets score for triple at the end`` () =
+    let digits = [2;2;2;1;1]
+    score digits |> should equal 400
