@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="greed.fs"/>
+    <Compile Include="greedTest.fs"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FsUnit.xUnit" Version="3.4.0"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.0"/>
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1"/>
+  </ItemGroup>
+</Project>
