@@ -1,6 +1,7 @@
 module Greed
 
 let score dice =
+    let tripleSize = 3
     let sortedDice = dice |> List.sort
     let calcTripleScore n =
         match n with
@@ -18,7 +19,7 @@ let score dice =
     *)
     let tryFindHighestScoringTriple () =
         sortedDice
-        |> List.windowed 3
+        |> List.windowed tripleSize
         |> List.mapi (
             fun i w -> if w |> List.forall ((=) w.Head)
                          then calcTripleScore w.Head, Some i else 0, None)
@@ -28,9 +29,9 @@ let score dice =
 
     let singles windowStart =
         match windowStart with
-        | Some 0 -> [sortedDice.[3]; sortedDice.[4]]
-        | Some 1 -> [sortedDice.[0]; sortedDice.[4]]
-        | Some 2 -> [sortedDice.[0]; sortedDice.[1]]
+        | Some i ->
+            (sortedDice |> List.take i) @ 
+            (sortedDice |> List.skip (tripleSize - i) |> List.take (tripleSize - 1 - i))
         | _ -> sortedDice
 
     let singlesList = singles windowStart
