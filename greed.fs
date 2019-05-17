@@ -20,8 +20,8 @@ let score dice =
         sortedDice
         |> List.windowed 3
         |> List.mapi (
-            fun i w -> if w.[0] = w.[1] && w.[1] = w.[2]
-                         then calcTripleScore w.[0], Some i else 0, None)
+            fun i w -> if w |> List.forall ((=) w.Head)
+                         then calcTripleScore w.Head, Some i else 0, None)
         |> List.maxBy (fun (s, _) -> s)
 
     let tripleScore, windowStart = tryFindHighestScoringTriple ()
