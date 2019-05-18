@@ -16,20 +16,10 @@ let score dice =
 
     let groups = dice |> List.groupBy id
 
-    let tripleScore =
-        (0, groups)
-        ||> List.fold (fun acc (n, g) ->
-                    let len = List.length g
-                    let score = if len >= tripleSize then calcTripleScore n else 0
-                    max acc score
-            )
-
-    let singleScore =
-        groups
-        |> List.sumBy (fun (n, g) ->
-                    let len = List.length g
-                    let numSingles = if len >= tripleSize then len - tripleSize else len
-                    numSingles * calcSingleScore n
-            )
-
-    tripleScore + singleScore
+    groups
+    |> List.sumBy (fun (n, g) ->
+            let len = List.length g
+            let numSingles = if len >= tripleSize then len - tripleSize else len
+            let tripleScore = if len >= tripleSize then calcTripleScore n else 0
+            tripleScore + numSingles * calcSingleScore n
+        )
