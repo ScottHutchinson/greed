@@ -14,9 +14,8 @@ let score dice =
         | 5 -> 50
         | _ -> 0
 
-    let groups = dice |> List.groupBy id
-
-    groups
+    dice
+    |> List.groupBy id
     |> List.sumBy (fun (n, g) ->
             let len = List.length g
             let numSingles = if len >= tripleSize then len - tripleSize else len
